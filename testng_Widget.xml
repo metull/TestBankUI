@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+
+<suite name="SMOKE TESTS" parallel="classes" thread-count="6" >
+
+    <test name="SMOKE TESTS">
+        <parameter name="browserName" value="chrome"/>
+        <parameter name="online" value="https://www.google.com/"/>
+        <classes>
+            <class name="onlineWidget.PagesOne"/>
+        </classes>
+    </test>
+</suite>
+
+
+
+
+
+        
+
+
+
