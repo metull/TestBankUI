@@ -2,6 +2,7 @@ package Application;
 
 import Common.Logs;
 import Common.PageOperations;
+import Test.TestCase;
 import Test.UITest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,9 +21,13 @@ public class ApplicationManager {
     protected PageOperations page;
     protected Logs logs;
     protected UITest uiTest;
+    protected TestCase caseOne;
 
     public PageOperations page() {
         return page = new PageOperations(driver);
+    }
+    public TestCase caseOne() {
+        return caseOne = new TestCase(driver);
     }
 
     public Logs logs() {

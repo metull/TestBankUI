@@ -33,7 +33,6 @@ public class Logs extends PageOperations {
         Reporter.log(
                 "<br><b><div align=\"left\" style=\" height:30px; width:250px; padding: 10px; border: 2px solid gray; margin: 0; background-color:#ff2500;\">"
                         + testName + " Fail! " + platform + "</div></b>");
-
     }
 
     public void passedTest(String testName, String platform) {
@@ -49,6 +48,5 @@ public class Logs extends PageOperations {
         for (File file : files) {
             file.delete();
         }
-
     }
 }

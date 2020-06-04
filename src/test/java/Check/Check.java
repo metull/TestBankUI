@@ -1,7 +1,5 @@
 package Check;
 
-import org.assertj.core.api.AbstractStringAssert;
-
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.testng.AssertJUnit.assertTrue;
 
