@@ -1,6 +1,7 @@
 package Common;
 
 import Application.ApplicationManager;
+import PageOperations.Page;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
@@ -12,7 +13,7 @@ import java.util.Date;
 
 import static Application.ApplicationManager.getDriver;
 
-public class Logs extends PageOperations {
+public class Logs extends Page {
     public ApplicationManager app;
 
     public Logs(RemoteWebDriver driver) {
@@ -21,7 +22,6 @@ public class Logs extends PageOperations {
     }
 
     public void get_Log() {
-
         LogEntries logEntries = getDriver().manage().logs().get(LogType.BROWSER);
         for (LogEntry entry : logEntries) {
             System.out.println(new Date(entry.getTimestamp()) + " " + entry.getLevel() + " " + entry.getMessage());

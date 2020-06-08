@@ -18,6 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static Application.ApplicationManager.cleanDir;
 import static Application.ApplicationManager.getDriver;
 import static org.monte.media.AudioFormatKeys.EncodingKey;
 import static org.monte.media.AudioFormatKeys.MediaTypeKey;
@@ -78,11 +79,10 @@ public class BaseTest {
 
     @BeforeSuite(alwaysRun = true)
     public void CleanUp() {
-        app = new ApplicationManager();
         // Clean screen dir
         File file = new File("");
-        app.logs().clean(file.getAbsoluteFile() + "\\screenshots\\");
-        app.logs().clean(file.getAbsoluteFile() + "\\videos\\");
+        cleanDir(file.getAbsoluteFile() + "\\screenshots\\");
+        cleanDir(file.getAbsoluteFile() + "\\videos\\");
     }
 
     public void stopRecording() throws Exception {

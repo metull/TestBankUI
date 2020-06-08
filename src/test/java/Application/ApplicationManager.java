@@ -1,16 +1,13 @@
 package Application;
 
 import Common.Logs;
-import Common.PageOperations;
-import Test.TestCase;
-import Test.UITest;
+import PageOperations.BankOpenPage;
+import PageOperations.GooglePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
 
 import java.io.File;
 
@@ -18,24 +15,20 @@ public class ApplicationManager {
     public static RemoteWebDriver driver;
     public static ApplicationManager app;
 
-    protected PageOperations page;
+    protected GooglePage googlePage;
+    protected BankOpenPage bankOpenPage;
     protected Logs logs;
-    protected UITest uiTest;
-    protected TestCase caseOne;
 
-    public PageOperations page() {
-        return page = new PageOperations(driver);
+    public GooglePage googlePage() {
+        return googlePage = new GooglePage(driver);
     }
-    public TestCase caseOne() {
-        return caseOne = new TestCase(driver);
+
+    public BankOpenPage bankOpenPage() {
+        return bankOpenPage = new BankOpenPage(driver);
     }
 
     public Logs logs() {
         return logs = new Logs(driver);
-    }
-
-    public UITest uiTest() {
-        return uiTest = new UITest(driver);
     }
 
     private static WebDriver createInstance(String browserName, DesiredCapabilities capabilities) {
@@ -51,6 +44,21 @@ public class ApplicationManager {
         return driver;
     }
 
+    public static void cleanDir(String dir) {
+        File file = new File(dir);
+        File[] files = file.listFiles();
+        if (files != null) { //some JVMs return null for empty dirs
+            for (File f : files) {
+                if (f.isDirectory()) {
+                    cleanDir(dir);
+                } else {
+                    f.delete();
+                }
+            }
+        }
+        file.delete();
+    }
+
     private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<WebDriver>();
 
     public static WebDriver getDriver() {
@@ -61,8 +69,6 @@ public class ApplicationManager {
         webDriver.set(driver);
     }
 
-    @Parameters({"browserName"})
-    @BeforeMethod(alwaysRun = true)
     public static void getInstance(String browserName) {
         app = new ApplicationManager();
         DesiredCapabilities capabilities = new DesiredCapabilities();

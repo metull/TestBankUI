@@ -1,28 +1,24 @@
 package Test;
 
-import Application.ApplicationManager;
-import Common.PageOperations;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import Common.BaseTest;
+import org.testng.annotations.Test;
 
-import static Check.Check.CheckValue;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class UITest extends PageOperations {
+public class UITest extends BaseTest {
 
-    protected ApplicationManager app;
-
-    public UITest(RemoteWebDriver driver) {
-        super(driver);
-        app = new ApplicationManager();
-    }
-
+    @Test(groups = { "ui" })
     public void TestForBank() {
-        app.page().get("https://www.google.com");
-        app.caseOne().sendText();
-        app.caseOne().clickOnButtonFind();
-        CheckValue(app.caseOne().checkUrl(), "www.open.ru");
-        app.caseOne().clickOnUrlBank();
-        app.caseOne().getPriceUSDAndEquals();
-        app.caseOne().getPriceEURAndEquals();
-    }
+        app.googlePage().goToPage();
+        app.googlePage().fillSearchField("Открытие");
+        app.googlePage().clickButtonFindInGoogle();
+        app.googlePage().clickOnLink("https://www.open.ru/");
+        Double priceSellEUR = app.bankOpenPage().getPriceSellEUR();
+        Double priceBuyEUR = app.bankOpenPage().getPriceBuyEUR();
+        Double priceSellUSD = app.bankOpenPage().getPriceSellUSD();
+        Double priceBuyUSD = app.bankOpenPage().getPriceBuyUSD();
 
+        assertThat(priceBuyEUR).isGreaterThan( priceSellEUR);
+        assertThat(priceBuyUSD).isGreaterThan( priceSellUSD);
+    }
 }

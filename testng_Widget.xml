@@ -7,7 +7,7 @@
         <parameter name="browserName" value="chrome"/>
         <parameter name="online" value="https://www.google.com/"/>
         <classes>
-            <class name="onlineWidget.PagesOne"/>
+            <class name="Test.UITest"/>
         </classes>
     </test>
 </suite>
