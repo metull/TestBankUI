@@ -42,7 +42,6 @@ public class Logs extends Page {
     }
 
     public void clean(String dir) {
-
         File f = new File(dir);
         File[] files = f.listFiles();
         for (File file : files) {

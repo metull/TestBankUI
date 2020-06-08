@@ -41,5 +41,4 @@ public class BankOpenPage extends Page {
     public Double getPriceBuyUSD() {
         return Double.parseDouble(getUSDTableBuy().getText().replace(",", "."));
     }
-
 }

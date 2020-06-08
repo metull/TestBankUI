@@ -32,7 +32,7 @@ public class GooglePage extends Page {
     }
 
     public void goToPage() {
-       driver.get("https://www.google.com");
+        driver.get("https://www.google.com");
     }
 
     private WebElement findLink(String url) {
